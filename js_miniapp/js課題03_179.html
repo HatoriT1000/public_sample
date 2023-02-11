@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js課題03</title>
+</head>
+<style>
+  p {
+    margin: 10px;
+    font-size: 8px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    text-align: center;
+  }
+
+  #output {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .colors {
+    width: 94.4px;
+    height: 93px;
+  }
+</style>
+
+<body onload="manual()">
+  <p id="output"></p>
+</body>
+<script>
+
+  // 使い方，バグったときの対処法を雑ながら説明
+  function manual() {
+    alert("全画面推奨。色の上でマウスを動かすと色変わります。\n左端の黒い枠に触るとバグるんで,バグったらリロードして下さい。")
+  }
+
+  // 最初に91個ランダムカラーのdivタグを取得したIDタグ(pタグ)内にinnnerHTMLで作る。形状はcssで正方形型にしている
+  for (let i = 0; i < 91; i++) {
+    let color00 = colorcode_maker();
+    output.innerHTML += `<div class="colors" style="background-color:${color00}">${color00} </div>`;
+  }
+
+  // rgbカラーコードをランダム生成する関数を定義
+  function colorcode_maker() {
+    let rgb_code = `rgb(${Math.floor(Math.random() * 255)},
+                          ${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`;
+    return rgb_code
+  }
+
+
+  // イベントリスナーでpタグ内の全要素について，マウスが上を通った時，ランダムに色を変える様に設定
+  // ※ここがバグの要因。pタグそのものはイベントリスナーを適応してほしくないが，
+  // 適応されてしまっているためpタグが意図せず書き変わってしまい全体が潰れる。
+  output.addEventListener("mouseover", function (event) {
+
+    // テクニカルな動きに見せるため，色は時間をおいて計3回変わる。まずここでは瞬時に変わらせてる。
+    let color_cod01 = colorcode_maker();
+    event.target.style.backgroundColor = color_cod01;
+    event.target.textContent = color_cod01;
+
+    // 次にsetTimeoutで時間をおいて変わらせる。setTimeoutを二重にしているため1.5秒後と3.0秒後にそれぞれ変わる
+    // タグ内に表示させているrgbカラーコードの値もついでに変わらせている
+    setTimeout(function () {
+      setTimeout(function () {
+        let color_cod02 = colorcode_maker();
+        event.target.style.backgroundColor = color_cod02;
+        event.target.textContent = color_cod02;
+      }, 1500);
+
+      let color_cod03 = colorcode_maker();
+      event.target.style.backgroundColor = color_cod03;
+      event.target.textContent = color_cod03;
+    }, 3000);
+
+  }, false);
+
+</script>
+
+</html>

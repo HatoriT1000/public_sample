@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>課題02:斜方投射の計算いろいろ</title>
+    <title>Projectile_motion_calc</title>
 </head>
 <body>
     <form>
@@ -18,8 +18,8 @@
                 <p><input type="button" class="calc-btn" 
                     onclick="calc(velocity0.value, angle.value);" value="計算"></p>
             </div>
-    
-    <form>
+    </form>
+
     <!-- 計算した結果はspanタグのid拾わせてtextContextで表示 -->
     <div>重力加速度は9.80665[m/s^2]に設定しています</div><br>
     <div>X方向初速度:<span id="velocityX0"></span>[m/s]</div><br>
@@ -27,7 +27,6 @@
     <div>飛翔時間t:<span id="t"></span>[min]</div><br>
     <div>到達距離X:<span id="X"></span>[m]</div><br>
     <div>到達高度h:<span id="h"></span>[m]</div><br>
-    </form>
 </body>
 </html>
 
@@ -37,25 +36,25 @@
     // 重力加速度は，9.80665で計算させてる
 
     var G=9.80665; 
-    
+
     function calc(velocity, angle) {
-        // roundを使ってないので，クソ桁数多いけど精度高いからこれはこれで良い？ 
+        // 計算精度は小数点4桁を四捨五入し3桁までに指定。
         const rad = 2*Math.PI*(angle/360);
 
         const velocityX0 = document.getElementById('velocityX0').textContent 
-        = velocity*Math.cos(rad);
+        = (velocity*Math.cos(rad)).toFixed(3);
 
         const velocityY0 = document.getElementById('velocityY0').textContent 
-        = velocity*Math.sin(rad);
+        = (velocity*Math.sin(rad)).toFixed(3);
 
         const half_t = velocityY0/G;
         const t = document.getElementById('t').textContent 
-        =half_t*2
+        = (half_t*2).toFixed(3)
 
         const X = document.getElementById('X').textContent 
-        = velocityX0*t
+        = (velocityX0*t).toFixed(3)
 
         const h = document.getElementById('h').textContent 
-        = velocityY0**2/(2*G)
+        = (velocityY0**2/(2*G)).toFixed(3)
     }
 </script>

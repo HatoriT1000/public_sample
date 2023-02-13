@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js課題03</title>
+  <title>Random_Color_App</title>
 </head>
 <style>
   p {
@@ -37,7 +37,7 @@
 
   // 使い方，バグったときの対処法を雑ながら説明
   function manual() {
-    alert("全画面推奨。色の上でマウスを動かすと色変わります。\n左端の黒い枠に触るとバグるんで,バグったらリロードして下さい。")
+    alert("全画面推奨。色の上でマウスを動かすと色が変わります。\n左端の黒い枠に触るとバグるので,バグったらリロードして下さい。")
   }
 
   // 最初に91個ランダムカラーのdivタグを取得したIDタグ(pタグ)内にinnnerHTMLで作る。形状はcssで正方形型にしている
@@ -57,6 +57,8 @@
   // イベントリスナーでpタグ内の全要素について，マウスが上を通った時，ランダムに色を変える様に設定
   // ※ここがバグの要因。pタグそのものはイベントリスナーを適応してほしくないが，
   // 適応されてしまっているためpタグが意図せず書き変わってしまい全体が潰れる。
+  // 改良中です...。
+  
   output.addEventListener("mouseover", function (event) {
 
     // テクニカルな動きに見せるため，色は時間をおいて計3回変わる。まずここでは瞬時に変わらせてる。

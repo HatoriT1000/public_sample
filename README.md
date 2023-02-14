@@ -9,3 +9,5 @@ isbn_check_calc.py →同じく講義用。書籍のisbnをチェックデジッ
 Color_animation → anime.min.jsを利用したちょっとしたアニメーションです。<br>
 prjctil_motion_calc.html → 斜方投射の計算が出来ます<br>
 random_colors.html → こっちもちょっとしたアニメーションです。<br>
+<br>
+随時追加していきます。

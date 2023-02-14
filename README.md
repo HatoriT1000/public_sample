@@ -1,5 +1,6 @@
 # public_sample
-作成したプログラムの一部です<br>　　
+作成したプログラムの一部です<br>
+<br>
 ・Pythonフォルダ内<br>
 hilbelt_calc.py → 大学講義用にヒルベルト行列と各行の総和を行列の積算で求めるプログラムです。<br>
 isbn_check_calc.py →同じく講義用。書籍のisbnをチェックデジットを使って確認計算しています。<br>
